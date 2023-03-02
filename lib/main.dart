@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:sampleflutter/view/home_page.dart';
 
 
 
 void main (){
 
-  SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(
-
-    )
-  );
+  // SystemChrome.setSystemUIOverlayStyle(
+  //   SystemUiOverlayStyle(
+  //
+  //   )
+  // );
 runApp(Home());
 
 }
