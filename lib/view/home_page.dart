@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sampleflutter/contants/gap_sizes.dart';
 import 'package:sampleflutter/models/book.dart';
+import 'package:sampleflutter/view/detail_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,6 +16,7 @@ class HomePage extends StatelessWidget {
           actions: [],
         ),
         body: ListView(
+          physics: BouncingScrollPhysics(),
           children: [
             Container(
               height: 250,
@@ -47,64 +50,70 @@ class HomePage extends StatelessWidget {
                   itemCount: books.length,
                   itemBuilder: (context, index) {
                     final book = books[index];
-                    return Container(
-                        margin: EdgeInsets.only(
-                            right: 10, left: index == 0 ? 10 : 0),
-                        width: 370,
-                        child: Stack(
+                    return InkWell(
+                      onTap: (){
+                    Get.to(() =>  DetailPage(book), transition: Transition.leftToRight);
+                      },
 
-                          children: [
-                            Positioned(
-                              bottom: 0,
-                              child: Card(
-                                child: Container(
-                                  width: 370,
-                                  padding: EdgeInsets.only(left: 10,),
-                                  height: 200,
-                                  child: Row(
-                                    children: [
-                                      SizedBox(width: 150,),
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Text(book.title),
-                                            Text(book.detail, maxLines: 3,),
-                                            Row(
-                                              children: [
-                                                Text(book.rating),
-                                                Spacer(),
-                                                TextButton(
-                                                  onPressed: (){},
-                                                  child: Text(book.genre),
-                                                )
-                                              ],
-                                            )
-                                          ],
+                      child: Container(
+                          margin: EdgeInsets.only(
+                              right: 10, left: index == 0 ? 10 : 0),
+                          width: 370,
+                          child: Stack(
+
+                            children: [
+                              Positioned(
+                                bottom: 0,
+                                child: Card(
+                                  child: Container(
+                                    width: 370,
+                                    padding: EdgeInsets.only(left: 10,),
+                                    height: 200,
+                                    child: Row(
+                                      children: [
+                                        SizedBox(width: 150,),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text(book.title),
+                                              Text(book.detail, maxLines: 3,),
+                                              Row(
+                                                children: [
+                                                  Text(book.rating),
+                                                  Spacer(),
+                                                  TextButton(
+                                                    onPressed: (){},
+                                                    child: Text(book.genre),
+                                                  )
+                                                ],
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
 
-                            Positioned(
-                              left: 10,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: _buildCachedNetworkImage(
-                                    width: 150,
-                                    height: 250,
-                                    imageUrl: book.imageUrl),
+                              Positioned(
+                                left: 10,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: _buildCachedNetworkImage(
+                                      width: 150,
+                                      height: 250,
+                                      imageUrl: book.imageUrl),
+                                ),
                               ),
-                            ),
 
 
 
-                          ],
-                        ));
+                            ],
+                          )),
+                    );
                   }),
             ),
 
@@ -173,8 +182,9 @@ class HomePage extends StatelessWidget {
       imageUrl:imageUrl,
       height: height,
       width: width,
+      placeholderFadeInDuration: Duration(milliseconds: 50),
       placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-      errorWidget: (context, url, error) => Icon(Icons.error),
+      errorWidget: (context, url, error) => Image.asset('assets/images/book.jpg'),
       fit: BoxFit.cover,
     );
   }
