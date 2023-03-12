@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
-import 'package:sampleflutter/providers/counter_provider.dart';
+import 'package:sampleflutter/providers/samples/counter_provider.dart';
 import 'package:sampleflutter/view/home_page.dart';
 
 
@@ -13,7 +13,8 @@ void main (){
   //
   //   )
   // );
-runApp(ProviderScope(child: Home()));
+runApp(ProviderScope(
+    child: Home()));
 
 }
 
@@ -24,7 +25,7 @@ class Home extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: HomePage(),
+    //  home: HomePage(),
     );
   }
 }

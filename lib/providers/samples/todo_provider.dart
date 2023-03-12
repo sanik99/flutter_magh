@@ -1,9 +1,18 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sampleflutter/models/todo.dart';
+import 'package:sampleflutter/models/sample/todo.dart';
 
 
 
-
+// class B {
+//   final int age;
+//   B(this.age);
+// }
+//
+//
+// class A extends B{
+//   A(super.age);
+//
+// }
 
 final todoProvider = StateNotifierProvider<TodoProvider, List<Todo>>((ref) => TodoProvider([
   Todo(title: 'reading some books', dateTime: DateTime.now().toIso8601String())
