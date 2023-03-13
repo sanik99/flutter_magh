@@ -5,8 +5,8 @@ import 'package:sampleflutter/providers/samples/counter_provider.dart';
 import 'package:sampleflutter/view/home_page.dart';
 
 
+void main () async{
 
-void main (){
 
   // SystemChrome.setSystemUIOverlayStyle(
   //   SystemUiOverlayStyle(
@@ -25,7 +25,7 @@ class Home extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-    //  home: HomePage(),
+      home: HomePage(),
     );
   }
 }

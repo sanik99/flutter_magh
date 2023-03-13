@@ -39,6 +39,7 @@ dependencies:
   get: ^4.6.5
   flutter_riverpod: ^2.3.0
   fluttertoast: ^8.2.1
+  dio: ^5.0.2
 
 dev_dependencies:
   flutter_test:
