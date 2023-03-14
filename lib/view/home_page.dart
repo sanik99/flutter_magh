@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sampleflutter/providers/samples/data_provider.dart';
+
+
 
 
 class HomePage extends StatelessWidget {
@@ -8,26 +8,33 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Consumer(
-            builder: (context, ref, child) {
-              final dat = ref.watch(dataProvider);
-              return Container(
-                  child: Center(
-                      child:dat.when(
-                          data: (data){
-                            return Text(data.toString());
-                          },
-                          error: (err, stack) {
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+          appBar: AppBar(
+            elevation: 0,
+            flexibleSpace: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              height: 100,
+              child: SafeArea(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Watch Now', style: TextStyle(fontSize: 25, color: Colors.white),),
+                    IconButton(onPressed: (){}, icon: Icon(Icons.search, size: 30,))
+                  ],
+                ),
+              ),
 
-                            return Text('$err');
-                          },
-                          loading: () => CircularProgressIndicator()
-                      )
-                  )
-              );
-            }
-    )
+            ),
+            bottom: TabBar(
+                tabs: [
+                  Tab()
+                ]
+            ),
+          ),
+          body: const Placeholder()),
     );
   }
 }

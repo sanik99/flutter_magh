@@ -4,7 +4,7 @@
 
 
 class MovieData{
-  final MovieDates movieDates;
+  final MovieDates? movieDates;
   final List<Movie> movie;
   MovieData({
     required this.movie,

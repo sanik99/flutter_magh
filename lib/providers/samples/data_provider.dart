@@ -9,7 +9,7 @@ final dataProvider = FutureProvider((ref) => DataProvider.getData());
 class DataProvider {
 
   static final  dio = Dio();
-static   Future getData() async{
+static   Future<int> getData() async{
 
     try{
       final response = await dio.get('https://api.themoviedb.org/3/movie/upcoming',
@@ -17,11 +17,11 @@ static   Future getData() async{
         'api_key': '2a0f926961d00c667e191a21c14461f8'
         }
       );
-      return response.data;
+      return 90;
     }on DioError catch(err){
       print(err.type);
       print(err.response!.statusCode);
-      return err;
+      return 90;
     }
 
   }
