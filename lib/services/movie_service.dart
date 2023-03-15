@@ -30,7 +30,6 @@ MovieService(this._dio);
       return Right(extractData);
 
     }on DioError catch(err, stack){
-      print(stack);
       return Left(err.toString());
     }
 

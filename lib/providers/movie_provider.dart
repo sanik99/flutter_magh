@@ -4,17 +4,21 @@ import 'package:sampleflutter/services/movie_service.dart';
 
 
 
-final movieProvider = StateNotifierProvider.autoDispose<MovieProvider, MovieState>((ref) => MovieProvider(MovieState.empty(),
-    ref.watch(movieService)));
+final movieProvider = StateNotifierProvider.family<MovieProvider, MovieState, String>(
+        (ref, String api) => MovieProvider(MovieState.empty(),
+    ref.watch(movieService), api));
 
 class MovieProvider extends StateNotifier<MovieState>{
   final MovieService service;
-  MovieProvider(super.state, this.service);
+  final String apiPath;
+  MovieProvider(super.state, this.service, this.apiPath){
+    getData();
+  }
 
 
-  Future<void> getData({required String apiPath, required int page}) async{
+  Future<void> getData() async{
     state = state.copyWith(errMessage: '', isSuccess: false, isError: false, movies: [], isLoad: true);
-       final response = await service.getData(apiPath: apiPath, page: page);
+       final response = await service.getData(apiPath: apiPath, page: state.page);
        response.fold((l) {
          state = state.copyWith(errMessage: l, isSuccess: false, isError: true, movies: [], isLoad: false);
        }, (r) {

@@ -49,10 +49,16 @@ factory Movie.fromJson(Map<String, dynamic> json){
       title: json['title'] ?? '',
       backdrop_path: json['backdrop_path'] ?? '',
       overview: json['overview'],
-      poster_path: json['poster_path'],
-      vote_average: json['vote_average']
+      poster_path: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/${json['poster_path']}',
+      vote_average: '${json['vote_average']}'
   );
 }
 
+@override
+  String toString() {
+    return 'Movie('
+    'title: $title'
+      ')';
+  }
 
 }

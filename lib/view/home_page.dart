@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sampleflutter/view/widgets/tab_bar_widget.dart';
+
+import '../contants/enums.dart';
 
 
 
@@ -9,9 +12,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
           appBar: AppBar(
+            toolbarHeight: 77,
             elevation: 0,
             flexibleSpace: Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
@@ -29,12 +33,27 @@ class HomePage extends StatelessWidget {
 
             ),
             bottom: TabBar(
+
                 tabs: [
-                  Tab()
+                  Tab(
+                    text: CategoryType.Popular.name,
+                  ),
+                  Tab(
+                    text: CategoryType.Top_Rated.name,
+                  ),
+                  Tab(
+                    text: CategoryType.Upcoming.name,
+                  ),
                 ]
             ),
           ),
-          body: const Placeholder()),
+          body: TabBarView(
+            children: [
+           TabBarWidget(categoryType: CategoryType.Popular, pageKey: 'popular'),
+           TabBarWidget(categoryType: CategoryType.Top_Rated, pageKey: 'top'),
+           TabBarWidget(categoryType: CategoryType.Upcoming, pageKey: 'upcoming',),
+              ],)
+      ),
     );
   }
 }
