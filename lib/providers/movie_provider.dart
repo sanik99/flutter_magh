@@ -26,4 +26,7 @@ class MovieProvider extends StateNotifier<MovieState>{
        });
   }
 
+
+
+
 }
