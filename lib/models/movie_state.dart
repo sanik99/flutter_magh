@@ -11,6 +11,7 @@ class MovieState{
  final bool isLoad;
  final List<Movie> movies;
  final int page;
+ final bool isLoadMore;
 
 
  MovieState({
@@ -19,7 +20,8 @@ class MovieState{
    required this.isError,
    required this.movies,
    required this.isLoad,
-   required this.page
+   required this.page,
+   required this.isLoadMore
 });
 
  MovieState copyWith ({
@@ -28,7 +30,8 @@ class MovieState{
    String? errMessage,
    List<Movie>? movies,
    bool? isLoad,
-   int? page
+   int? page,
+   bool? isLoadMore
 }){
    return MovieState(
        errMessage: errMessage ?? this.errMessage,
@@ -36,12 +39,13 @@ class MovieState{
        isError: isError ?? this.isError,
        movies: movies ?? this.movies,
        isLoad: isLoad ?? this.isLoad,
-     page: page ?? this.page
+     page: page ?? this.page,
+     isLoadMore: isLoadMore ?? this.isLoadMore
    );
  }
 
 factory MovieState.empty(){
-   return MovieState(errMessage: '', isSuccess: false, isError: false, movies: [], isLoad: false, page: 1);
+   return MovieState(errMessage: '', isSuccess: false, isError: false, movies: [], isLoad: false, page: 1, isLoadMore: false);
 }
 
 

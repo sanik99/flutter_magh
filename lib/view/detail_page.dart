@@ -22,9 +22,9 @@ DetailPage(this.movie);
                 children: [
                   videoData.when(
                   data: (data){
-                   return Container(
+                   return data.isEmpty ? Center(child: Text('no keys were found')): Container(
                        height: 300,
-                       child: PlayVideoFromNetwork(videoKey: data,));
+                       child: PlayVideoFromNetwork(videoKey: data[0],));
                   }, error: (err,s) => Text('$err'),
                       loading: () => Container()
                   )

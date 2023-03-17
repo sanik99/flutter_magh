@@ -17,16 +17,19 @@ class MovieProvider extends StateNotifier<MovieState>{
 
 
   Future<void> getData() async{
-    state = state.copyWith(errMessage: '', isSuccess: false, isError: false, movies: [], isLoad: true);
+    state = state.copyWith(errMessage: '', isSuccess: false, isError: false,  isLoad:state.isLoadMore? false: true);
        final response = await service.getData(apiPath: apiPath, page: state.page);
        response.fold((l) {
          state = state.copyWith(errMessage: l, isSuccess: false, isError: true, movies: [], isLoad: false);
        }, (r) {
-         state = state.copyWith(errMessage: '', isSuccess: true, isError: false, movies: r, isLoad: false);
+         state = state.copyWith(errMessage: '', isSuccess: true, isError: false, movies: [...state.movies, ...r], isLoad: false);
        });
   }
 
 
-
+  void loadMore() async{
+    state = state.copyWith(isLoadMore: true, page: state.page + 1);
+    getData();
+  }
 
 }

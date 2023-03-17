@@ -39,5 +39,24 @@ MovieService(this._dio);
 
 
 
+Future<Either<String, List<Movie>>> searchMovie( String q) async{
+  try{
+    final response = await _dio.get(Api.searchMovie,
+        queryParameters: {
+          'api_key': Api.apiKey,
+          'page': 1,
+          'query': q
+        }
+    );
+    final extractData = (response.data['results'] as List).map((e) => Movie.fromJson(e)).toList();
+    return Right(extractData);
+
+  }on DioError catch(err, stack){
+    return Left(err.toString());
+  }
+
+}
+
+
 
 }

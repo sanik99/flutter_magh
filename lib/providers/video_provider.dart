@@ -15,17 +15,23 @@ final Dio _dio;
 final int id;
 VideoProvider(this._dio, this.id);
 
-  Future<String> getVideoId() async{
+  Future<List<String>> getVideoId() async{
     try{
    final response = await _dio.get('/movie/$id/videos', queryParameters: {
      'api_key': Api.apiKey
    });
-
-   return  response.data['results'][0]['key'];
+   return  (response.data['results'] as List).map((e) => e['key'] as String).toList();
     }on DioError catch (err){
-      return err.toString();
+      throw err.toString();
     }
   }
 
 
 }
+
+
+
+
+
+
+
