@@ -4,7 +4,7 @@ import 'package:sampleflutter/services/movie_service.dart';
 
 
 
-final searchProvider = StateNotifierProvider<SearchProvider, SearchState>(
+final searchProvider = StateNotifierProvider.autoDispose<SearchProvider, SearchState>(
         (ref, ) => SearchProvider(SearchState.empty(),
         ref.watch(movieService)));
 

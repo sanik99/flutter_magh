@@ -48,8 +48,15 @@ Future<Either<String, List<Movie>>> searchMovie( String q) async{
           'query': q
         }
     );
-    final extractData = (response.data['results'] as List).map((e) => Movie.fromJson(e)).toList();
-    return Right(extractData);
+
+      if((response.data['results'] as List).isEmpty){
+        return Left('nothing found try using another keyword');
+      }else{
+        final extractData = (response.data['results'] as List).map((e) => Movie.fromJson(e)).toList();
+        return Right(extractData);
+      }
+
+
 
   }on DioError catch(err, stack){
     return Left(err.toString());

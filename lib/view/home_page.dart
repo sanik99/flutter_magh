@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sampleflutter/view/search_page.dart';
 import 'package:sampleflutter/view/widgets/tab_bar_widget.dart';
 
 import '../contants/enums.dart';
@@ -26,7 +28,9 @@ class HomePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Watch Now', style: TextStyle(fontSize: 25, color: Colors.white),),
-                    IconButton(onPressed: (){}, icon: Icon(Icons.search, size: 30,))
+                    IconButton(onPressed: (){
+                      Get.to(() => SearchPage());
+                    }, icon: Icon(Icons.search, size: 30,))
                   ],
                 ),
               ),
